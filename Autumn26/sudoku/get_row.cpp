@@ -17,16 +17,21 @@ void get_row(int r, const std::vector<int>& in, std::vector<int>& out){
     //therefore row lenght is just sqrt of lenght of our 1d sequence
     int rowlen = std::sqrt(in.size()) ;
 
-    //ensure that the output is clear before operation
-    out.clear() ;
-
-    // the first element of our desired row is indexed by twod_to_oned(r, 0 , rowlen)
-    // the last element of our desired row is indexed by twod_to_oned(r, rowlen-1 , rowlen) , inclusive
-    //we itterate on our 1d vector and add the desired elements
-    for ( int i = twod_to_oned(r, 0 , rowlen) ; i<= twod_to_oned(r, rowlen-1 , rowlen) ; i++ ){
-        out.push_back(in[i]) ;
+    //the indexes of our desired positions are of form Twod_to_oned(r,i,rowlen)
+    //for i between 0 and rowlen-1 , inclusive
+    std::vector<int> row_index_vector ;
+    for (int i = 0 ; i < rowlen ; i++){
+        row_index_vector.push_back(twod_to_oned(r,i,rowlen)) ;
     }
     
+    //clear the output before writing data
+    out.clear() ;
+
+    //writing the elements of which we stored the index
+    for (int i = 0 ; i<row_index_vector.size() ; i++){
+        out.push_back(in[row_index_vector[i]]) ;
+    }
+
     return ;
 }
 
