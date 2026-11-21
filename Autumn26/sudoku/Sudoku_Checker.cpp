@@ -97,6 +97,22 @@ bool check_sequence(const std::vector<int>& v){
 // note that this function must (meaningfully) use function twod_to_oned
 void get_row(int r, const std::vector<int>& in, std::vector<int>& out){
     // write your code here
+
+    //if the sudoku is nxn , then our 1d sequence has n^2 elements
+    //therefore row lenght is just sqrt of lenght of our 1d sequence
+    int rowlen = std::sqrt(in.size()) ;
+
+    //ensure that the output is clear before operation
+    out.clear() ;
+
+    // the first element of our desired row is indexed by twod_to_oned(r, 0 , rowlen)
+    // the last element of our desired row is indexed by twod_to_oned(r, rowlen-1 , rowlen) , inclusive
+    //we itterate on our 1d vector and add the desired elements
+    for ( int i = twod_to_oned(r, 0 , rowlen) ; i<= twod_to_oned(r, rowlen-1 , rowlen) ; i++ ){
+        out.push_back(in[i]) ;
+    }
+    
+    return ;
 }
 
 // function get_col
