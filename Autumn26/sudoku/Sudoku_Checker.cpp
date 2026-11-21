@@ -229,12 +229,22 @@ bool valid_sudoku(const std::vector<int>& g){
 
     // for each column...
     for(int i = 0; i < side; i++){
-        // write your code here
+        seq.clear();
+        get_col(i, g, seq);
+
+        if(!check_sequence(seq)){ 
+            return false;
+        }
     }
 
     // for each subsquare...
    for(int i = 0; i < side; i++){
-        // write your code here
+        seq.clear();
+        get_subsq(i, g, seq);
+
+        if(!check_sequence(seq)){ 
+            return false;
+        }
     }
 
     // if the program execution gets to here it means that 
