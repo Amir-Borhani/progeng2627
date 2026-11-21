@@ -40,11 +40,18 @@ int twod_to_oned(int row, int col, int rowlen){
 int mfind(int n, const std::vector<int>& v){
     // write your code here
 
+    // checks each element of the vector one by one
     for ( int i = 0 ; i < v.size() ; i++){
+
+        //return the index and exits if one of the items matches
         if (v[i]==n){
             return i ;
         }
+
     }
+
+    //if program reaches this point it means that it has traversed the whole vector
+    //and didnt find a match , so it returns -1
     return -1 ;
 }
 
@@ -60,7 +67,23 @@ int mfind(int n, const std::vector<int>& v){
 // note that check_sequence must (meaningfully) use function mfind
 bool check_sequence(const std::vector<int>& v){
     // write your code here
+
+    // i from 1 to v.size() inclusive
+    for (int i = 1 ; i < v.size() + 1; i++){
+
+        //if it doesnt find a number it immediately returns false and exits
+        if ( mfind(i , v) == -1){
+            return false ;
+        }
+
+    }
+
+    //if program reaches this point 
+    //it means that it found all integers from 1 to v.size() 
+    //and must return true
+    return true ;
 }
+
 
 // function get_row
 // takes in input:
